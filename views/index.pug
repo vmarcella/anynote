@@ -1,5 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    nav.navbar.navbar-expand-lg.navbar-dark()
+        a.navbar-brand(href='/') anynote
+        div.collapse.navbar-collapse()
+            ul.navbar-nav()
+                li.nav-item.active() 
+                    a.nav-link(href='/') Home
+                li.nav-item()
+                    a.nav-link(href='/notes') Notes
+                li.nav-item()
+                    a.nav-link(href='/settings') Settings
+    div.container-fluid
+        div.row
+            div.col-lg-3.col-md-3.sections()
+                div.create-section()
+                    button.btn.btn-primary() Create new section
+                    input(type='text')
+            div.col-lg-9.col-md-9()
+                textarea#text-field(name='notepad')
