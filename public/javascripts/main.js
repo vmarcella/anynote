@@ -34,8 +34,25 @@ function createSection() {
 
 function createNote(sectionId) {
     var section = document.getElementById(sectionId);
-    
-    axios.post('')
+    var title = 'untitled note'
+    axios.post('/notes', {title: title, content:'', sectionId: sectionId})
+        .then(response => {
+            var notes = document.querySelector(`.notes[id= "${sectionId}"]`);
+            var newNote = response.data;
+            console.log(notes)  
+            notes.innerHTML = `
+                <div class="note" id=${newNote._id}>
+                    <h3 class="note-title" contenteditable="true">${newNote.title}</h3>
+                    <span class="buttons">
+                        <button class="btn btn-primary" onclick="editNote('${newNote._id}')">Edit note</button>
+                        <button class="btn btn-primary" onclick="renameNote('${newNote._id}')">Rename note</button>
+                        <button class="btn btn-primary" onclick="deleteNote('${newNote._id}')">Delete note</button>
+                    </span>
+                </div>  
+            ` + notes.innerHTML;
+        }).catch(err => {
+            console.log(err);
+        })
 }
 
 function renameSection(sectionId) {
@@ -60,7 +77,7 @@ function deleteSection(sectionId) {
 
     axios.delete(`/sections/${sectionId}`)
         .then(response => {
-            section.parentNode.removeChild(section);
+            sectionTitle.parentNode.removeChild(sectionTitle);
         })
         .catch(err => {
             console.log(err)

@@ -11,8 +11,9 @@ router.get('/', function(req, res, next) {
    
         for (section in sections){
             sections[section].notes = []
-            Note.find({sectionId: section._id}).then(notes => {
-                sections[section].notes = notes;    
+            Note.find({sectionId: sections[section]._id}).then(notes => {
+                sections[section].notes = notes;
+                console.log(sections[section].notes)
             }).catch(err => {
                 console.log(err);
             });
