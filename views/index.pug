@@ -13,9 +13,17 @@ block content
                     a.nav-link(href='/settings') Settings
     div.container-fluid
         div.row
-            div.col-lg-3.col-md-3.sections()
+            div.col-lg-4.col-md-4.sections()
                 div.create-section()
-                    button.btn.btn-primary() Create new section
-                    input(type='text')
-            div.col-lg-9.col-md-9()
+                    button.btn.btn-primary(onclick='createSection()') Create new section
+                    input#section(type='text', required)
+                div.sections-display()
+                    each section in sections
+                        div.section-card(id= section._id)
+                            h1.section-title(contentEditable='true') #{section.title}
+                            span.buttons()
+                                button.btn.btn-primary(onclick=`createNote('${section._id}')`) New note
+                                button.btn.btn-primary(onclick=`renameSection('${section._id}')`) Rename section
+                                button.btn.btn-primary(onclick=`deleteSection('${section._id}')`) Delete section
+            div.col-lg-8.col-md-8.textarea()
                 textarea#text-field(name='notepad')
