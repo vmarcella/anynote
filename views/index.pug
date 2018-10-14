@@ -23,7 +23,7 @@ block content
                                 button.btn.btn-primary(onclick=`deleteSection('${section._id}')`) Delete section
 
                         div.notes(id= section._id)
-                                each note in section.notes
+                                each note in sections
                                     div.note(id= note._id)
                                         h3.note-title(contentEditable='true') ${note.title}
                                         span.buttons()
