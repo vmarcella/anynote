@@ -58,9 +58,9 @@ function createNote(sectionId) {
 function renameSection(sectionId) {
     var section = document.getElementById(sectionId).childNodes[0];
     
-    if (section.innerText.length == 0) {
-        return;
-    }
+    // if (section.innerText.length == 0) {
+    //  return;
+    //}
 
     axios.put(`/sections/${sectionId}`, {title: section.innerText})
         .then(response => {
