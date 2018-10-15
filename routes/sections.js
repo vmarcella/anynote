@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Section = require('../models/section')
+const Note = require('../models/note')
 
 //Create a new section and then return JSON back to the user containing the new section
 router.post('/', (req, res) => {
@@ -24,7 +25,11 @@ router.put('/:sectionId', (req, res) => {
 //Delete a section and then return JSON back to the user containing the deleted section
 router.delete('/:sectionId', (req, res) => {
     Section.findByIdAndRemove(req.params.sectionId).then(section => {
-        res.status(200).send(section)
+        Note.deleteMany({sectionId: section._id}).then(notes => {
+            res.status(200).send(section);
+        }).catch(err => {
+            console.log(er)
+        });
     }).catch(err => {
         console.log(err);
         res.status(500).send('Cannot delete sections at the moment, sorry!')

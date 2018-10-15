@@ -13,34 +13,29 @@ block content
                 div.create-section()
                     button.btn.btn-primary(onclick='createSection()') Create new section
                     input#section(type='text', required)
-                div.sections-display()
+                div.sections-display.scrollable.pre-scrollable()
                     each section in sections
-                        div.section-card(id= section._id)
-                            h1.section-title(contentEditable='true') #{section.title}
-                            span.buttons()
-                                button.btn.btn-primary(onclick=`createNote('${section._id}')`) New note
-                                button.btn.btn-primary(onclick=`renameSection('${section._id}')`) Rename section
-                                button.btn.btn-primary(onclick=`deleteSection('${section._id}')`) Delete section
-
-                        div.notes(id= section._id)
-<<<<<<< HEAD
-                            each note in section.notes
-                                div.note(id= note._id)
-                                    h3.note-title(contentEditable='true') ${note.title}
-                                    span.buttons()
-                                        button.btn.btn-primary(onclick=`editNote('${note._id}')`) Edit note
-                                        button.btn.btn-primary(onclick=`renameNote('${note._id}')`) Rename note
-                                        button.btn.btn-primary(onclick=`deleteNote(${note._id})`) Delete note
-                                
-=======
-                                each note in sections
-                                    div.note(id= note._id)
-                                        h3.note-title(contentEditable='true') ${note.title}
-                                        span.buttons()
-                                            button.btn.btn-primary(onclick=`editNote('${note._id}')`) Edit note
-                                            button.btn.btn-primary(onclick=`renameNote('${note._id}')`) Rename note
-                                            button.btn.btn-primary(onclick=`deleteNote(${note._id})`) Delete note
+                        div.section-container
+                            div.section-card(id= section._id)
+                                h1.section-title(contentEditable='true') #{section.title}
+                                span.buttons()
+                                    button.btn.btn-primary(onclick=`createNote('${section._id}')`) New note
+                                    button.btn.btn-primary(onclick=`renameSection('${section._id}')`) Rename section
+                                    button.btn.btn-primary(onclick=`deleteSection('${section._id}')`) Delete section
+                            div.notes(id= 'notes-' + section._id)
+                                if section.notes
+                                     each note in section.notes
+                                        div.note(id= note._id)
+                                            h3.note-title(contentEditable='true') #{note.title}
+                                            span.buttons()
+                                                button.btn.btn-primary(onclick=`editNote('${note._id}')`) Edit note
+                                                button.btn.btn-primary(onclick=`renameNote('${note._id}')`) Rename note
+                                                button.btn.btn-primary(onclick=`saveNote('${note._id}')`) Save note
+                                                button.btn.btn-primary(onclick=`deleteNote('${note._id}')`) Delete note
                                     
->>>>>>> b691b751c794e6e31bd429e1769012c7501a4022
             div.col-lg-8.col-md-8.textarea()
-                textarea#text-field(name='notepad')
+                div.file-info
+                    h1#working-on You're currently not working on anything
+                    h3#last-save Nothing to have been saved
+                    h3#created-at Nothing has been created
+                textarea#notepad(name='notepad' maxlength='1000')
