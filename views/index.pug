@@ -23,6 +23,7 @@ block content
                                 button.btn.btn-primary(onclick=`deleteSection('${section._id}')`) Delete section
 
                         div.notes(id= section._id)
+<<<<<<< HEAD
                             each note in section.notes
                                 div.note(id= note._id)
                                     h3.note-title(contentEditable='true') ${note.title}
@@ -31,5 +32,15 @@ block content
                                         button.btn.btn-primary(onclick=`renameNote('${note._id}')`) Rename note
                                         button.btn.btn-primary(onclick=`deleteNote(${note._id})`) Delete note
                                 
+=======
+                                each note in sections
+                                    div.note(id= note._id)
+                                        h3.note-title(contentEditable='true') ${note.title}
+                                        span.buttons()
+                                            button.btn.btn-primary(onclick=`editNote('${note._id}')`) Edit note
+                                            button.btn.btn-primary(onclick=`renameNote('${note._id}')`) Rename note
+                                            button.btn.btn-primary(onclick=`deleteNote(${note._id})`) Delete note
+                                    
+>>>>>>> b691b751c794e6e31bd429e1769012c7501a4022
             div.col-lg-8.col-md-8.textarea()
                 textarea#text-field(name='notepad')

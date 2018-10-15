@@ -16,12 +16,14 @@ function createSection() {
             var newSection = response.data;
             sections.innerHTML = `
                 <div class="section-card" id="${newSection._id}">
-                    <h1 class="section-title">${newSection.title}</h1>
+                    <h1 class="section-title" contenteditable="true">${newSection.title}</h1>
                     <span class="buttons">
                         <button class="btn btn-primary" onclick="createNote('${newSection._id}')">New note</button>
                         <button class="btn btn-primary" onclick="renameSection('${newSection._id}')">Rename section</button>
                         <button class="btn btn-primary" onclick="deleteSection('${newSection._id}')">Delete section</button>
                     </span>
+                </div>
+                <div class="notes" id="${newSection._id}">
                 </div>
                     
             ` + sections.innerHTML;
@@ -37,9 +39,9 @@ function createNote(sectionId) {
     var title = 'untitled note'
     axios.post('/notes', {title: title, content:'', sectionId: sectionId})
         .then(response => {
-            var notes = document.querySelector(`.notes[id= "${sectionId}"]`);
+            var notes = document.querySelector(`.notes[id='${sectionId}']`);
             var newNote = response.data;
-            console.log(notes)  
+  
             notes.innerHTML = `
                 <div class="note" id=${newNote._id}>
                     <h3 class="note-title" contenteditable="true">${newNote.title}</h3>
@@ -57,10 +59,13 @@ function createNote(sectionId) {
 
 function renameSection(sectionId) {
     var section = document.getElementById(sectionId).childNodes[0];
+<<<<<<< HEAD
     
     // if (section.innerText.length == 0) {
     //  return;
     //}
+=======
+>>>>>>> b691b751c794e6e31bd429e1769012c7501a4022
 
     axios.put(`/sections/${sectionId}`, {title: section.innerText})
         .then(response => {
