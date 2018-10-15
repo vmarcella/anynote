@@ -1,6 +1,8 @@
+//express imports
 const express = require('express');
 const router = express.Router();
 
+//model imports
 const Section = require('../models/section')
 const Note = require('../models/note')
 

@@ -10,8 +10,8 @@ function createSection() {
         section.placeholder = '';
     }
 
+    //Create section and then display it on the page
     axios.post('/sections', {title: sectionName}).then(response => {
-        console.log(response)
         var sections = document.querySelector('.sections-display');
         var newSection = response.data;
         sections.innerHTML = `
@@ -47,7 +47,8 @@ function createNote(sectionId) {
         date: date,
         sectionId: sectionId
     }
-
+    
+    //Create notes and then display it on the page
     axios.post('/notes', note).then(response => {
         var notes = document.getElementById(`notes-${sectionId}`);
         var newNote = response.data;
@@ -157,7 +158,7 @@ function saveNote(noteId){
     })
 }
 
-//Delete a note from the app and the server. Also removes it from the display.
+//Deletes a note from the app and server and then removes it from the display.
 function deleteNote(noteId){
     var note = document.getElementById(noteId);
     var notepad = document.getElementById('notepad');

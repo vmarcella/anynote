@@ -1,3 +1,6 @@
+//Note model
+//Notes can be created, read, updated, and deleted by the user on the app.
+//They contain a title, content, updatedAt, createdAt, and a sectionId tag.
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
