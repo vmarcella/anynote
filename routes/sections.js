@@ -8,6 +8,7 @@ const Note = require('../models/note')
 
 //Create a new section and then return JSON back to the user containing the new section
 router.post('/', (req, res) => {
+    console.log(req.body)
     Section.create(req.body).then(section => {
         res.status(200).send(section)
     }).catch(err => {
@@ -17,7 +18,9 @@ router.post('/', (req, res) => {
 
 //Update a section and then then return JSON back to the user containing the updated section
 router.put('/:sectionId', (req, res) => {
-    Section.findByIdAndUpdate(req.params.sectionId, req.body).then(section => {
+    console.log(req.body)
+    Section.findByIdAndUpdate(req.params.sectionId, req.body, {new: true}).then(section => {
+        console.log(section.title)
         res.status(200).send(section);
     }).catch(err => {
         res.status(500).send('Cannot update sections at the moment, sorry!')

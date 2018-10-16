@@ -38,7 +38,7 @@ router.get('/:noteId', (req, res) => {
 
 //Update the note and then return JSON containg information about the updated note.
 router.put('/:noteId', (req, res) => {
-    Note.findByIdAndUpdate(req.params.noteId, req.body).then(note => {
+    Note.findByIdAndUpdate(req.params.noteId, req.body, {new: true}).then(note => {
         res.status(200).send(note);
     }).catch(err => {
         console.log(err);

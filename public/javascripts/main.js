@@ -2,7 +2,7 @@
 function createSection() {
     var section = document.getElementById('section')
     var sectionName = section.value;
-
+    console.log(section.value)
     if (sectionName.length == 0) {
         section.placeholder = 'Enter a name plz!'
         return;
